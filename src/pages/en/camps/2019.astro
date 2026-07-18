@@ -1,0 +1,70 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const photos = Array.from({ length: 15 }, (_, i) => `tabor2019-${String(i + 1).padStart(2, '0')}.jpg`);
+---
+
+<Base title="Diaspora School Camp 2019" lang="en" description="Report on the 2019 Diaspora School Camp in Vancouver.">
+  <div class="container container--narrow prose">
+    <h1 class="page-title">Diaspora School Camp 2019</h1>
+
+    <p>
+      We first heard about the Diaspora School Camps in February 2019, at the
+      Conference of Hungarian Schools Abroad in Budapest. Our school liked the idea
+      so much that a few enthusiastic teachers and volunteers immediately got in
+      touch with the Hungarian Scout Association in Exteris. The association was
+      very open and helpful, so even though we had only five months, the Szent
+      László School of Vancouver managed to organize the camp. We found a suitable
+      venue, a dance teacher, and a cook. We put together the material for five
+      hours of daily sessions at four levels. By May 31, 36 children had signed up.
+      The camp ultimately became international — we were even joined from Seattle.
+      And on July 22, at Camp Kanaka in Maple Ridge, the first Diaspora School Camp
+      ever held in Canada opened its gates, organized by the Szent László Hungarian
+      School.
+    </p>
+    <p>
+      We spent five very rich days together in great spirits. In Ricsi and Anita we
+      had two capable, proactive, dynamic, well-prepared helpers — we could not
+      have imagined better ones.
+    </p>
+    <p>
+      The 36 children polished their Hungarian language and literature skills in
+      four groups. To our great joy, we managed to order an atlas for every child.
+      The children browsed them eagerly, getting to know Hungary's geography,
+      counties, and cities. The framing story this year was Ferenc Rákóczi II and
+      his era, so the children — each at their own level, and in a playful way —
+      also got a picture of this period of history.
+    </p>
+    <p>
+      Most of the five hours of daily learning also took place through play,
+      helped along by drama pedagogy and board games. After the lessons, dance,
+      song, and craft activities coloured the camp's days.
+    </p>
+    <p>
+      Many thanks to the Hungarian Scout Association in Exteris and to Gábor Szórád
+      for their help in organizing our camp on such short notice. Thanks to the many
+      volunteers — the teachers, the sports and craft session leaders, and everyone
+      working in the background — that we could put all our resources into giving
+      the children the richest, highest-quality week possible at the school camp.
+      As the photo and video montage shows, we succeeded.
+    </p>
+
+    <iframe
+      class="video-embed"
+      src="https://www.youtube-nocookie.com/embed/vWw3oGWouP8"
+      title="Diaspora School Camp 2019 – video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <div class="container">
+    <div class="gallery">
+      {photos.map((img, i) => (
+        <a href={`/images/${img}`} target="_blank">
+          <img src={`/images/${img}`} alt={`Diaspora School Camp 2019 – photo ${i + 1}`} loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

@@ -4,45 +4,108 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  lang?: 'hu' | 'en';
 }
 
-const { title, description = 'A vancouveri Szent László Magyar Iskola hivatalos oldala. Magyar nyelvoktatás gyerekeknek és felnőtteknek 1960 óta.' } = Astro.props;
+const defaultDesc = {
+  hu: 'A vancouveri Szent László Magyar Iskola hivatalos oldala. Magyar nyelvoktatás gyerekeknek és felnőtteknek 1960 óta.',
+  en: 'Official site of the Szent László Hungarian School in Vancouver. Hungarian language education for children and adults since 1960.',
+};
 
-const nav = [
-  { text: 'Kezdőlap', href: '/hu' },
-  {
-    text: 'Rólunk', href: '/hu/about',
-    children: [{ text: 'Segítőink', href: '/hu/about/volunteers' }],
+const { title, lang = 'hu', description = defaultDesc[lang] } = Astro.props;
+
+const navByLang = {
+  hu: [
+    { text: 'Kezdőlap', href: '/hu' },
+    {
+      text: 'Rólunk', href: '/hu/about',
+      children: [{ text: 'Segítőink', href: '/hu/about/volunteers' }],
+    },
+    {
+      text: 'Oktatás', href: '/hu/education',
+      children: [
+        { text: 'Tanáraink', href: '/hu/education/teachers' },
+        { text: 'Tantermeink', href: '/hu/education/classrooms' },
+        { text: 'Csoportjaink', href: '/hu/education/groups' },
+        { text: 'Órarend', href: '/hu/education/schedule' },
+        { text: 'Tandíj, jelentkezés', href: '/hu/education/tuition' },
+      ],
+    },
+    {
+      text: 'Táborok', href: '/hu/camps',
+      children: [
+        { text: '2019', href: '/hu/camps/2019' },
+        { text: '2022', href: '/hu/camps/2022' },
+      ],
+    },
+    {
+      text: 'Hírek, Események', href: '/hu/news',
+      children: [{ text: 'Naptár', href: '/hu/news/calendar' }],
+    },
+    { text: 'Elérhetőség', href: '/hu/contact' },
+  ],
+  en: [
+    { text: 'Home', href: '/en' },
+    {
+      text: 'About Us', href: '/en/about',
+      children: [{ text: 'Our Volunteers', href: '/en/about/volunteers' }],
+    },
+    {
+      text: 'Education', href: '/en/education',
+      children: [
+        { text: 'Our Teachers', href: '/en/education/teachers' },
+        { text: 'Our Classrooms', href: '/en/education/classrooms' },
+        { text: 'Our Groups', href: '/en/education/groups' },
+        { text: 'Schedule', href: '/en/education/schedule' },
+        { text: 'Tuition & Registration', href: '/en/education/tuition' },
+      ],
+    },
+    {
+      text: 'Camps', href: '/en/camps',
+      children: [
+        { text: '2019', href: '/en/camps/2019' },
+        { text: '2022', href: '/en/camps/2022' },
+      ],
+    },
+    {
+      text: 'News & Events', href: '/en/news',
+      children: [{ text: 'Calendar', href: '/en/news/calendar' }],
+    },
+    { text: 'Contact', href: '/en/contact' },
+  ],
+};
+
+const ui = {
+  hu: {
+    brandName: 'Szent László Magyar Iskola',
+    brandSub: 'Vancouver · Alapítva 1960',
+    navLabel: 'Fő navigáció',
+    menuLabel: 'Menü',
+    founded: 'Alapítva: 1960',
+    titleSuffix: 'Szent László Magyar Iskola, Vancouver',
   },
-  {
-    text: 'Oktatás', href: '/hu/education',
-    children: [
-      { text: 'Tanáraink', href: '/hu/education/teachers' },
-      { text: 'Tantermeink', href: '/hu/education/classrooms' },
-      { text: 'Csoportjaink', href: '/hu/education/groups' },
-      { text: 'Órarend', href: '/hu/education/schedule' },
-      { text: 'Tandíj, jelentkezés', href: '/hu/education/tuition' },
-    ],
+  en: {
+    brandName: 'Szent László Hungarian School',
+    brandSub: 'Vancouver · Founded 1960',
+    navLabel: 'Main navigation',
+    menuLabel: 'Menu',
+    founded: 'Founded: 1960',
+    titleSuffix: 'Szent László Hungarian School, Vancouver',
   },
-  {
-    text: 'Táborok', href: '/hu/camps',
-    children: [
-      { text: '2019', href: '/hu/camps/2019' },
-      { text: '2022', href: '/hu/camps/2022' },
-    ],
-  },
-  {
-    text: 'Hírek, Események', href: '/hu/news',
-    children: [{ text: 'Naptár', href: '/hu/news/calendar' }],
-  },
-  { text: 'Elérhetőség', href: '/hu/contact' },
-];
+}[lang];
+
+const nav = navByLang[lang];
 
 const currentPath = decodeURIComponent(Astro.url.pathname).replace(/\/$/, '') || '/';
 
+// the same page in the other language: swap the /hu | /en prefix
+const rest = currentPath.replace(/^\/(hu|en)/, '');
+const huHref = '/hu' + rest || '/hu';
+const enHref = '/en' + rest || '/en';
+
 // 'page' on the exact page; 'true' on a parent whose child page is open.
-// Language roots ('/hu') never count as parents, or Kezdőlap would always light up.
-const langRoots = ['/', '/hu'];
+// Language roots ('/hu', '/en') never count as parents, or Home would always light up.
+const langRoots = ['/', '/hu', '/en'];
 const currentAttr = (href: string) =>
   currentPath === href
     ? 'page'
@@ -52,14 +115,16 @@ const currentAttr = (href: string) =>
 ---
 
 <!doctype html>
-<html lang="hu">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} – Szent László Magyar Iskola, Vancouver</title>
+    <title>{title} – {ui.titleSuffix}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" hreflang="hu" href={huHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,19 +135,19 @@ const currentAttr = (href: string) =>
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="site-brand" href="/hu/">
+        <a class="site-brand" href={`/${lang}/`}>
           <img class="site-brand__herma" src="/images/szent-laszlo-herma.png" alt="Szent László herma" />
           <span>
-            Szent László Magyar Iskola
-            <small>Vancouver · Alapítva 1960</small>
+            {ui.brandName}
+            <small>{ui.brandSub}</small>
           </span>
         </a>
 
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menü">☰</label>
+        <label for="nav-toggle" class="nav-toggle-label" aria-label={ui.menuLabel}>☰</label>
 
         <div class="header-end">
-        <nav class="site-nav" aria-label="Fő navigáció">
+        <nav class="site-nav" aria-label={ui.navLabel}>
           <ul>
             {nav.map((item) => (
               <li>
@@ -108,12 +173,12 @@ const currentAttr = (href: string) =>
         </nav>
 
         <div class="lang-switch">
-          <a class="lang-switch__item is-active" href="/hu/" title="Magyar">
+          <a class:list={['lang-switch__item', { 'is-active': lang === 'hu' }]} href={huHref} title="Magyar">
             <img src="/images/flags/flag-hu.svg" alt="Magyar" />
           </a>
-          <span class="lang-switch__item is-disabled" title="English version coming soon">
-            <img src="/images/flags/flag-ca.svg" alt="English (hamarosan)" />
-          </span>
+          <a class:list={['lang-switch__item', { 'is-active': lang === 'en' }]} href={enHref} title="English">
+            <img src="/images/flags/flag-ca.svg" alt="English" />
+          </a>
         </div>
         </div>
       </div>
@@ -126,12 +191,12 @@ const currentAttr = (href: string) =>
     <footer class="site-footer">
       <div class="site-footer__inner">
         <div>
-          <strong>Szent László Magyar Iskola</strong><br />
+          <strong>{ui.brandName}</strong><br />
           1810 East 7th Avenue, Vancouver, B.C. V5N 1S2
         </div>
         <div>
           <a href="mailto:szlmagyariskola@gmail.com">szlmagyariskola@gmail.com</a><br />
-          Alapítva: 1960
+          {ui.founded}
         </div>
       </div>
     </footer>

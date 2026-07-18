@@ -2,19 +2,19 @@
 import Base from '../../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 
-const posts = (await getCollection('news', (post) => post.id.startsWith('hu/')))
+const posts = (await getCollection('news', (post) => post.id.startsWith('en/')))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const rendered = await Promise.all(
   posts.map(async (post) => ({ post, Content: (await render(post)).Content }))
 );
 
-const fmt = new Intl.DateTimeFormat('hu-HU', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const fmt = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
 
-<Base title="Hírek, Események" description="Hírek és események a Szent László Magyar Iskolában.">
+<Base title="News & Events" lang="en" description="News and events at the Szent László Hungarian School.">
   <div class="container container--narrow">
-    <h1 class="page-title">Hírek, Események</h1>
+    <h1 class="page-title">News & Events</h1>
 
     {rendered.map(({ post, Content }) => (
       <article class="news-item prose">

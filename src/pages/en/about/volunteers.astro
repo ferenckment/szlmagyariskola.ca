@@ -1,0 +1,36 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const helpers = [
+  'Dr. Horváth Gabriella',
+  'Madár Emőke',
+  'Dr. Ungár Júlia',
+  'Horváth László',
+  'Kalmár Ágnes',
+  'Kalmár László',
+  'Kalmár Magdolna',
+  'Kalmár Márta',
+  'Karsai Viktória',
+  'Kment Ábel',
+  'Kment Ferenc',
+  'Molnár László',
+  'Molnár Katalin',
+  'Nagy Angie',
+  'Sheila Vizi Virág',
+  'Törzsök Ibolya',
+];
+---
+
+<Base title="Our Volunteers" lang="en" description="The volunteers of the Szent László Hungarian School.">
+  <div class="container container--narrow prose">
+    <h1 class="page-title">Our Volunteers</h1>
+
+    <p>Our volunteers in the 2021/22 school year:</p>
+
+    <ul style="columns: 2; column-gap: 3rem;">
+      {helpers.map((name) => <li>{name}</li>)}
+    </ul>
+
+    <p><strong>Thank you very much to all our volunteers for their selfless work!</strong></p>
+  </div>
+</Base>

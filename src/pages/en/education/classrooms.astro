@@ -1,0 +1,25 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const rooms = Array.from({ length: 8 }, (_, i) => `tanterem-${String(i + 1).padStart(2, '0')}.jpg`);
+---
+
+<Base title="Our Classrooms" lang="en" description="The classrooms of the Szent László Hungarian School.">
+  <div class="container">
+    <h1 class="page-title">Our Classrooms</h1>
+
+    <p class="prose">
+      In the building attached to the Our Lady of Hungary Catholic Church, three
+      classrooms and a kindergarten room are at our disposal. School celebrations
+      are held on the stage in the main hall.
+    </p>
+
+    <div class="gallery">
+      {rooms.map((img, i) => (
+        <a href={`/images/${img}`} target="_blank">
+          <img src={`/images/${img}`} alt={`Classroom ${i + 1}`} loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

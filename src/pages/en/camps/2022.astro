@@ -1,0 +1,76 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const photos = Array.from({ length: 14 }, (_, i) => `tabor2022-${String(i + 1).padStart(2, '0')}.jpg`);
+---
+
+<Base title="Diaspora School Camp 2022" lang="en" description="Report on the 2022 Diaspora School Camp in Vancouver.">
+  <div class="container container--narrow prose">
+    <h1 class="page-title">Diaspora School Camp 2022</h1>
+
+    <p>
+      After the successful camp three years earlier, the Szent László Hungarian
+      School organized this year's camp with the goal of reviving the Hungarian
+      community after the pandemic, and with it the desire to learn the Hungarian
+      language and culture. We also wanted to give the children attending our
+      school — and Hungarian-speaking children of Hungarian descent living in the
+      surrounding area — an opportunity to deepen their Hungarian, and to get to
+      know Hungary's history, geography, cultural treasures, and traditions. The
+      camp was a day camp this year rather than residential, running from 9 a.m.
+      to 5 p.m. The Our Lady of Hungary parish, which provides our classrooms
+      during the school year, hosted the camp as well, so we could use the stage
+      and the main hall, while sports sessions were held in the park and
+      playground a five-minute walk from the school. During the organizing, a
+      grandmother wrote to enrol her grandchildren, who were visiting from
+      Montreal. It turned out her daughter had studied at the Szent László School
+      before moving to Montreal, where she is an active member and teacher of the
+      Hungarian school there. In the end, she took on teaching one of the groups.
+      A fantastic example that — although we live 3,700 km apart — we support each
+      other when needed.
+    </p>
+    <p>
+      The camp was wonderfully balanced, and our time together passed in great
+      spirits. The camp's theme — the folk tale — proved to be a splendid choice:
+      every age group loves listening to them, and they speak to everyone in some
+      way. Everyone loves to tell stories and daydream, as we experienced once
+      again. Based on the feedback, the children thoroughly enjoyed the week. We
+      started with 25 children, but in one family the two older kids told so many
+      stories at home that the youngest joined mid-week. When the camp ended, one
+      parent wrote that her little boy woke up on Saturday morning saying: let's
+      go to Hungarian camp — but this time not for five days, that's too short;
+      make it eight. We could not have received greater praise!
+    </p>
+    <p>
+      The campers' language skills ranged from basic Hungarian-as-a-foreign-language
+      to near-perfect. We deepened the children's Hungarian partly through constant
+      Hungarian speech and partly through the daily sessions — for that week, the
+      camp functioned as a little Hungarian island.
+    </p>
+    <p>
+      The days were organized around five different themes, each also touching on
+      Hungarian grammar, literature, history, and geography. Teaching was playful,
+      using the tools of experiential pedagogy. Every child received a folder to
+      collect the week's material in, and on Friday every age group proudly showed
+      theirs to their parents. This year's novelty was the camp T-shirt, which the
+      children wore with great joy. Dance instruction ran in two groups: the little
+      ones were just getting to know the basics, while the older ones already
+      managed more serious steps. The week's closing event was Friday's puppet
+      show. In the morning the children picked their favourites from the school's
+      puppets, then together we wrote a tale, which we performed on stage. It was
+      wonderful to see how creatively they crafted the camp's tale from folk-tale
+      elements after a week of active story listening and reading. The planned
+      program was realized to the fullest. We closed a rich, lively, good-spirited
+      camp — one we would love to continue in the years to come.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="gallery">
+      {photos.map((img, i) => (
+        <a href={`/images/${img}`} target="_blank">
+          <img src={`/images/${img}`} alt={`Diaspora School Camp 2022 – photo ${i + 1}`} loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>
