@@ -18,6 +18,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* reserve scrollbar space so the layout doesn't shift between short and long pages */
+  scrollbar-gutter: stable;
 }
 
 body {
