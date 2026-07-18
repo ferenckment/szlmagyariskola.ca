@@ -39,6 +39,14 @@ const nav = [
 ];
 
 const currentPath = decodeURIComponent(Astro.url.pathname).replace(/\/$/, '') || '/';
+
+// 'page' on the exact page; 'true' on a parent whose child page is open
+const currentAttr = (href: string) =>
+  currentPath === href
+    ? 'page'
+    : href !== '/' && currentPath.startsWith(href + '/')
+      ? 'true'
+      : undefined;
 ---
 
 <!doctype html>
@@ -77,7 +85,7 @@ const currentPath = decodeURIComponent(Astro.url.pathname).replace(/\/$/, '') ||
               <li>
                 <a
                   href={item.href}
-                  aria-current={currentPath === item.href ? 'page' : undefined}
+                  aria-current={currentAttr(item.href)}
                 >{item.text}</a>
                 {item.children && (
                   <ul class="submenu">

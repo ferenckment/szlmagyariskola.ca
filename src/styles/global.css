@@ -160,7 +160,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--accent);
 }
 
-.site-nav a[aria-current="page"] {
+.site-nav a[aria-current] {
   color: var(--accent-strong);
 }
 
