@@ -3,6 +3,16 @@
 Static Astro site for the Szent László Magyar Iskola (Hungarian school in Vancouver).
 No database, no API, no client-side framework. Site language is Hungarian.
 
+## Publishing workflow
+
+Hosting is Cloudflare Pages (project `szlmagyariskola-ca`), building automatically
+from GitHub. `main` deploys to production (https://www.szlmagyariskola.ca).
+Any other branch deploys to a private preview at
+`<branch>.szlmagyariskola-ca.pages.dev` (plus a per-commit URL) — use the
+`staging` branch to let the user review changes before they go live:
+work on `staging`, push, share the preview URL, and merge to `main` only
+after approval.
+
 ## Commands
 
 - `npm run dev` – dev server at http://localhost:4321
