@@ -1,0 +1,83 @@
+# Cloudflare Pages redirects — real 301s for every earlier URL generation.
+# Keep in sync with the redirects map in astro.config.mjs (used by the dev server).
+# Hungarian paths are percent-encoded, as browsers send them.
+
+/ /hu/ 301
+
+# website.com-era Hungarian URLs
+/r%C3%B3lunk /hu/about/ 301
+/r%C3%B3lunk/ /hu/about/ 301
+/segitoink /hu/about/volunteers/ 301
+/segitoink/ /hu/about/volunteers/ 301
+/oktatas /hu/education/ 301
+/oktatas/ /hu/education/ 301
+/tanaraink /hu/education/teachers/ 301
+/tanaraink/ /hu/education/teachers/ 301
+/csoportjaink /hu/education/groups/ 301
+/csoportjaink/ /hu/education/groups/ 301
+/%C3%B3rarend /hu/education/schedule/ 301
+/%C3%B3rarend/ /hu/education/schedule/ 301
+/tand%C3%ADj--jelentkez%C3%A9s /hu/education/tuition/ 301
+/tand%C3%ADj--jelentkez%C3%A9s/ /hu/education/tuition/ 301
+/taborok /hu/camps/ 301
+/taborok/ /hu/camps/ 301
+/tabor2019 /hu/camps/2019/ 301
+/tabor2019/ /hu/camps/2019/ 301
+/tabor2022 /hu/camps/2022/ 301
+/tabor2022/ /hu/camps/2022/ 301
+/h%C3%ADrek /hu/news/ 301
+/h%C3%ADrek/ /hu/news/ 301
+/n /hu/news/calendar/ 301
+/n/ /hu/news/calendar/ 301
+/faq /hu/contact/ 301
+/faq/ /hu/contact/ 301
+
+# flat English routes (first rename)
+/about /hu/about/ 301
+/about/ /hu/about/ 301
+/volunteers /hu/about/volunteers/ 301
+/volunteers/ /hu/about/volunteers/ 301
+/education /hu/education/ 301
+/education/ /hu/education/ 301
+/teachers /hu/education/teachers/ 301
+/teachers/ /hu/education/teachers/ 301
+/classrooms /hu/education/classrooms/ 301
+/classrooms/ /hu/education/classrooms/ 301
+/groups /hu/education/groups/ 301
+/groups/ /hu/education/groups/ 301
+/schedule /hu/education/schedule/ 301
+/schedule/ /hu/education/schedule/ 301
+/tuition /hu/education/tuition/ 301
+/tuition/ /hu/education/tuition/ 301
+/camps /hu/camps/ 301
+/camps/ /hu/camps/ 301
+/camp2019 /hu/camps/2019/ 301
+/camp2019/ /hu/camps/2019/ 301
+/camp2022 /hu/camps/2022/ 301
+/camp2022/ /hu/camps/2022/ 301
+/news /hu/news/ 301
+/news/ /hu/news/ 301
+/calendar /hu/news/calendar/ 301
+/calendar/ /hu/news/calendar/ 301
+/contact /hu/contact/ 301
+/contact/ /hu/contact/ 301
+
+# nested un-prefixed routes (second rename)
+/about/volunteers /hu/about/volunteers/ 301
+/about/volunteers/ /hu/about/volunteers/ 301
+/education/teachers /hu/education/teachers/ 301
+/education/teachers/ /hu/education/teachers/ 301
+/education/classrooms /hu/education/classrooms/ 301
+/education/classrooms/ /hu/education/classrooms/ 301
+/education/groups /hu/education/groups/ 301
+/education/groups/ /hu/education/groups/ 301
+/education/schedule /hu/education/schedule/ 301
+/education/schedule/ /hu/education/schedule/ 301
+/education/tuition /hu/education/tuition/ 301
+/education/tuition/ /hu/education/tuition/ 301
+/camps/2019 /hu/camps/2019/ 301
+/camps/2019/ /hu/camps/2019/ 301
+/camps/2022 /hu/camps/2022/ 301
+/camps/2022/ /hu/camps/2022/ 301
+/news/calendar /hu/news/calendar/ 301
+/news/calendar/ /hu/news/calendar/ 301
