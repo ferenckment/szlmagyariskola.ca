@@ -1,0 +1,5 @@
+# Keep the production *.pages.dev mirror out of search results; only
+# www.szlmagyariskola.ca should be indexed. (Preview branches already get
+# noindex from Cloudflare.)
+https://szlmagyariskola-ca.pages.dev/*
+  X-Robots-Tag: noindex
